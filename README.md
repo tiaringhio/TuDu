@@ -14,17 +14,6 @@
   
   - [Table of Contents](#table-of-contents)
   - [About The Project](#about-the-project)
-  - [SIP Requests](#sip-requests)
-    - [INVITE](#INVITE)
-    - [ACK](#ACK)
-    - [BYE](#BYE)
-  - [UML Diagrams](#uml-diagrams)
-    - [Class Diagram](#class-diagram)
-  - [Getting Started](#getting-started)
-    - [Libraries](#Libraries)
-    - [Updates](#updates)
-  - [License](#license)
-  - [Contributors](#contributors)
    
    <!-- ABOUT THE PROJECT -->
    ## About The Project
