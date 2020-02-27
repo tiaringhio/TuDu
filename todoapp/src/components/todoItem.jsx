@@ -50,13 +50,13 @@ class ToDoItem extends Component {
   };
 
   changeCardTitle() {
-    let classes = "todoItem-";
+    let classes = "todoItem";
     classes += this.props.todo.completed ? " completed" : "";
     return classes;
   }
 
   changeCardColor() {
-    let classes = "card text-centeritemBody-";
+    let classes = "card text-centeritemBody";
     classes += this.props.todo.completed ? " bg-secondary " : "";
     return classes;
   }
