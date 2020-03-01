@@ -5,18 +5,9 @@ class Header extends Component {
   render() {
     return (
       <div className="text-center mb-3">
-        <Card
-          //  className="card mt-2"
-          style={({ height: "25em" }, { background: "#2962ff" })}
-        >
+        <Card style={({ height: "25em" }, { background: "#2962ff" })}>
           <Card.Body>
-            <h1
-              //className="display-3"
-              //className="col-xs-1 center-block"
-              style={{ color: "white" }}
-            >
-              To Do
-            </h1>
+            <h1 style={{ color: "white" }}>TuDu</h1>
           </Card.Body>
         </Card>{" "}
       </div>

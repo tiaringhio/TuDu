@@ -11,11 +11,12 @@ class App extends Component {
       currentItem: {
         text: "",
         completed: false,
-        key: ""
+        key: "",
+        category: ""
       }
     };
     this.addTodo = this.addTodo.bind(this);
-    this.handleInput = this.handleInput.bind(this);
+    this.changeDecorator = this.changeDecorator.bind(this);
   }
 
   componentDidMount = () => {
@@ -28,15 +29,16 @@ class App extends Component {
     }
   };
 
-  handleInput(e) {
-    this.setState({
-      currentItem: {
-        text: e.target.value,
-        completed: false,
-        key: Date.now()
+  // TODO: This could be used to store the color TODO
+  changeDecorator = async decorator => {
+    await this.setState({
+      decorator: {
+        color: decorator
       }
     });
-  }
+    localStorage.setItem("decorator", JSON.stringify(this.state.decorator));
+    console.log("Decorators in storage", localStorage.getItem("decorator"));
+  };
 
   addTodo = async todo => {
     await this.setState({
@@ -44,10 +46,10 @@ class App extends Component {
       currentItem: {
         text: "",
         completed: false,
-        key: ""
+        key: "",
+        category: ""
       }
     });
-    console.log(this.state.todos);
     localStorage.setItem("todos", JSON.stringify(this.state.todos));
     console.log("Todos in storage", localStorage.getItem("todos"));
   };
@@ -58,7 +60,8 @@ class App extends Component {
         return {
           text: todo.text,
           completed: !todo.completed,
-          key: _todo.key
+          key: _todo.key,
+          category: _todo.category
         };
       } else {
         return _todo;
@@ -87,6 +90,7 @@ class App extends Component {
           currentItem={this.state.currentItem}
           updateTodoFn={this.updateTodo}
           deleteTodoFn={this.deleteTodo}
+          changeDecorator={this.changeDecorator}
         />
       </div>
     );

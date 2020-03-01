@@ -2,18 +2,27 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "./todoItem.css";
+import ColorSelector from "../components/colorSelector";
 
 class ToDoItem extends Component {
   render() {
     const { todo } = this.props;
+    const { decorator } = this.props;
     return (
       <div>
         <Card
           className="card text-center"
           key={todo.key}
-          style={({ width: "18em" }, { height: "9em" })}
+          style={({ width: "18em" }, { height: "12em" })}
         >
-          <Card.Body>
+          <Card.Header
+            className="category header"
+            style={todo.category != "" ? {} : { display: "none" }}
+          >
+            {todo.category}
+          </Card.Header>
+          <Card.Body className={this.changeCardColor}>
+            {" "}
             <Card.Title className={this.changeCardTitle()} type="text">
               {todo.text}
             </Card.Title>
@@ -32,7 +41,7 @@ class ToDoItem extends Component {
               }}
             >
               Delete
-            </Button>
+            </Button>{" "}
           </Card.Body>
         </Card>
       </div>
@@ -54,10 +63,10 @@ class ToDoItem extends Component {
     classes += this.props.todo.completed ? " completed" : "";
     return classes;
   }
-
+  // TODO: Color selector
   changeCardColor() {
     let classes = "card text-centeritemBody";
-    classes += this.props.todo.completed ? " bg-secondary " : "";
+    classes += this.props.decorator.color ? " bg-secondary " : "";
     return classes;
   }
 }

@@ -10,7 +10,8 @@ class AddToDo extends Component {
       todos: [],
       currentItem: {
         text: "",
-        key: ""
+        key: "",
+        category: ""
       }
     };
   }
@@ -18,7 +19,6 @@ class AddToDo extends Component {
     return (
       <div className="row h-100">
         <div className="col-sm-12 my-auto">
-          <div className="col-lg-4 col-lg-offset-4"></div>
           <div className="w-25 mx-auto">
             <div className="input-group mb-3">
               <InputGroup className="mb-3">
@@ -29,7 +29,7 @@ class AddToDo extends Component {
                   value={this.props.currentItem}
                   id={"addTodoInput"}
                   onChange={e => {
-                    this.handleInput(e);
+                    this.getElement(e);
                   }}
                 />
                 <InputGroup.Append>
@@ -51,15 +51,38 @@ class AddToDo extends Component {
     );
   }
 
-  handleInput = e => {
+  getElement = e => {
+    let target = e.target.value;
+    let dataBefore = [];
+    let dataAfter = [];
+    let newWord = [];
+    let newDecorator = [];
+    let i = 0;
+    for (i = 0; i < target.length && target[i] != "#"; i++) {
+      dataBefore.push(target[i]);
+      newWord = dataBefore.join("");
+    }
+    if (target[i] === "#") {
+      for (let j = i + 1; j < target.length; j++) {
+        dataAfter.push(target[j]);
+        newDecorator = dataAfter.join("");
+      }
+    }
     this.setState({
       currentItem: {
-        text: e.target.value,
+        text: newWord,
         completed: false,
-        key: Date.now()
+        key: Date.now(),
+        category: newDecorator
       }
     });
+    console.log();
   };
+
+  // TODO: This could be used to change the card color
+  // submitDecorator = e => {
+  //   this.props.changeDecorator(this.state.decorator);
+  // };
 
   submitTodo = e => {
     this.props.addTodo(this.state.currentItem);
