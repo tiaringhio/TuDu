@@ -4,14 +4,13 @@
   <a href="https://github.com/tiaringhio/TuDu">
     <img src="./public/todo.png" alt="Logo" width="130" height="130">
   </a>
-  <h1 align="center">TuDu</h1>
+  <h1 align="center">TuDu </h1>
   <p align="center">
     A simple To-Do Web App written in React.
   </p>
   <p align="center">
     <a href="https://tiaringhio.github.io/TuDu/" target="_blank" align="center">Live Demo</a>
   </p>
-  
   
   <!-- TABLE OF CONTENTS -->
   ## Table of Contents
@@ -23,7 +22,8 @@
     - [Categories](#categoruies)
     - [Item Management](#item-management)
     - [Colors](#colors)
-
+  - [Test / Deploy](#test-deploy)
+  - [License](#lice)
    <!-- ABOUT THE PROJECT -->
 
 ## About The Project
@@ -45,7 +45,7 @@ When adding a new item you can add a category with this simple sintax:
 
 > New Item Text #Category
 
-The category will be shown in the header of your item
+The category will be shown in the header of your item.
 
 ### Item Management
 
@@ -55,7 +55,11 @@ You can set your items as completed by pressing on the **Done** button or you ca
 
 You can choose the card color of your liking by pressing the **:** button on the bottom right side of the card and select which color you want, you can even enter a Hex value!
 
-## LICENSE
+## Test / Deploy [![Build Status](https://travis-ci.com/tiaringhio/TuDu.svg?token=4CsoRWc4by6MkvHzh68Q&branch=master)](https://travis-ci.com/tiaringhio/TuDu)
+
+This project is tested and deployed to GitHub Pages using Travis CI/CD.
+
+## License
 
 Distributed under the GPL License. See `LICENSE` for more information.
 
@@ -63,6 +67,6 @@ Distributed under the GPL License. See `LICENSE` for more information.
    title="Flaticon"> www.flaticon.com</a></div>
    
    <!-- CONTRIBUTORS -->
-   ## CONTRIBUTORS
+   ## Contributors
 
 [Mattia Ricci](https://github.com/tiaringhio)
