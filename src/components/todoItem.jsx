@@ -31,7 +31,7 @@ class ToDoItem extends Component {
     return (
       <div>
         <Card
-          className="card text-center"
+          className="cardItem"
           key={todo.key}
           style={
             ({ width: "18em" },
@@ -124,7 +124,7 @@ class ToDoItem extends Component {
 
   changeCardTitle() {
     let classes = "todoItem";
-    classes += this.props.todo.completed ? " completed" : "";
+    classes += this.props.todo.completed ? " strike" : "";
     return classes;
   }
 }

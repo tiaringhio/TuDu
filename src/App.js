@@ -43,11 +43,9 @@ class App extends Component {
       }
     });
     localStorage.setItem("todos", JSON.stringify(this.state.todos));
-    console.log("Todos in storage", localStorage.getItem("todos"));
   };
 
   changeColor = async (todo, color) => {
-    console.log("received color request", color);
     const newColor = this.state.todos.map(_todo => {
       if (todo === _todo) {
         return {
@@ -63,8 +61,6 @@ class App extends Component {
     });
     await this.setState({ todos: newColor });
     localStorage.setItem("todos", JSON.stringify(this.state.todos));
-    console.log("todo with new color", newColor);
-    console.log("Todos in storage", localStorage.getItem("todos"));
   };
 
   updateTodo = async todo => {
@@ -83,7 +79,6 @@ class App extends Component {
     });
     await this.setState({ todos: newTodos });
     localStorage.setItem("todos", JSON.stringify(this.state.todos));
-    console.log(newTodos);
   };
 
   deleteTodo = async key => {

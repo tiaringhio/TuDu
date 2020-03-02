@@ -6,12 +6,55 @@
   text-decoration: line-through;
 }
 
+.cardItem {
+  text-align: center !important;
+  margin-top: 10px;
+}
+
+.cardItem:hover {
+  transition: all 0.2s ease-out;
+  box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+  top: -4px;
+  border: 1px solid #cccccc;
+}
+
+.cardItem:before {
+  position: absolute;
+  z-index: -1;
+  top: -16px;
+  right: -16px;
+  height: 32px;
+  width: 32px;
+  border-radius: 32px;
+  transform: scale(2);
+  transform-origin: 50% 50%;
+  transition: transform 0.15s ease-out;
+}
+
+.cardItem:hover:before {
+  transform: scale(2.15);
+}
+
 .menu-card {
   position: absolute;
   bottom: 0;
   right: 0;
   margin-bottom: 5px;
   margin-right: 10px;
+}
+
+@keyframes strike {
+  from {
+    text-decoration-color: transparent;
+  }
+  to {
+    text-decoration-color: auto;
+  }
+}
+
+.strike {
+  text-decoration: line-through;
+  animation: strike 0.3s linear;
 }
 
 .palette-icon {

@@ -49,11 +49,11 @@ The category will be shown in the header of your item.
 
 ### Item Management
 
-You can set your items as completed by pressing on the **Done** button or you can delete the item of your choice by pressing the **Delete** button.
+You can set your items as completed by pressing on the ✔️ button or you can delete the item of your choice by pressing the 🗑️ button.
 
 ### Colors
 
-You can choose the card color of your liking by pressing the **:** button on the bottom right side of the card and select which color you want, you can even enter a Hex value!
+You can choose the card color of your liking by pressing the 🎨 button on the bottom right side of the card and select which color you want, you can even enter a Hex value!
 
 ## Test / Deploy [![Build Status](https://travis-ci.com/tiaringhio/TuDu.svg?token=4CsoRWc4by6MkvHzh68Q&branch=master)](https://travis-ci.com/tiaringhio/TuDu)
 
