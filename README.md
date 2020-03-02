@@ -9,7 +9,7 @@
     A simple To-Do Web App written in React.
   </p>
   <p align="center">
-    <a href="https://tiaringhio.github.io/TuDu/"  target="_blank" align="center">Live Demo</a>
+    <a href="https://tiaringhio.github.io/TuDu/" target="_blank" align="center">Live Demo</a>
   </p>
   
   
