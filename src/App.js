@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "./components/header";
 import ToDoList from "./components/todolist";
 import AddToDo from "./components/addTodo";
+import SplashScreen from "./components/splashScreen";
 
 class App extends Component {
   constructor(props) {
@@ -95,6 +96,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <SplashScreen />
         <Header />
         <AddToDo addTodo={this.addTodo} />
         <ToDoList

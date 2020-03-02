@@ -2,7 +2,7 @@
   <br />
     <p align="center">
   <a href="https://github.com/tiaringhio/TuDu">
-    <img src="./public/todo.png" alt="Logo" width="130" height="130">
+    <img src="src\components\todo.png" alt="Logo" width="130" height="130">
   </a>
   <h1 align="center">TuDu </h1>
   <p align="center">
@@ -19,11 +19,11 @@
   - [About The Project](#about-the-project)
   - [Features](#features)
     - [Add Item](#add-item)
-    - [Categories](#categoruies)
+    - [Categories](#categories)
     - [Item Management](#item-management)
     - [Colors](#colors)
-  - [Test / Deploy](#test-deploy)
-  - [License](#lice)
+  - [Test & Deploy](#test--deploy-)
+  - [License](#license)
    <!-- ABOUT THE PROJECT -->
 
 ## About The Project

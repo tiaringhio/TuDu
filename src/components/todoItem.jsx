@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import "./todoItem.css";
 import { TwitterPicker } from "react-color";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faPalette } from "@fortawesome/free-solid-svg-icons";
+
 class ToDoItem extends Component {
   state = {
     displayColorPicker: false,
@@ -36,40 +40,42 @@ class ToDoItem extends Component {
           }
         >
           <Card.Header
-            className="category header"
+            className="category-header"
             style={todo.category != "" ? {} : { display: "none" }}
           >
             {todo.category}
           </Card.Header>
           <Card.Body className="card-body">
             {" "}
-            <Card.Title className={this.changeCardTitle()} type="text">
+            <Card.Title
+              className={this.changeCardTitle()}
+              onClick={this.toggleTodo}
+              type="text"
+            >
               {todo.text}
             </Card.Title>
-            <Button
-              variant="outline-primary"
-              size="sm"
+            <span>
+              <FontAwesomeIcon
+                className="delete-icon"
+                color="#707070"
+                icon={faTrash}
+                onClick={() => {
+                  this.deleteTodoItem(todo.key);
+                }}
+              />
+            </span>
+            <FontAwesomeIcon
+              className="complete-icon"
+              color="#707070"
+              icon={faCheck}
               onClick={this.toggleTodo}
-            >
-              Done
-            </Button>{" "}
-            <Button
-              variant="outline-danger"
-              size="sm"
-              onClick={() => {
-                this.deleteTodoItem(todo.key);
-              }}
-            >
-              Delete
-            </Button>{" "}
-            <h4
-              className="menu-card"
-              variant="outline-primary"
-              size="sm"
+            />
+            <FontAwesomeIcon
+              className="palette-icon"
+              color="#707070"
+              icon={faPalette}
               onClick={this.handleClick}
-            >
-              :
-            </h4>
+            />
             {this.state.displayColorPicker ? (
               <div style={popover}>
                 <div style={cover} onClick={this.handleClose} />
@@ -97,7 +103,6 @@ class ToDoItem extends Component {
   };
 
   handleChangeComplete = color => {
-    console.log("Previous color", this.state.background);
     this.setState({ background: color.hex });
     this.colorChange(this.state.background);
   };
@@ -110,12 +115,10 @@ class ToDoItem extends Component {
    * rest of things
    */
   toggleTodo = () => {
-    console.log("pressed");
     this.props.updateTodoFn(this.props.todo);
   };
 
   deleteTodoItem = key => {
-    console.log("asked for deletion");
     this.props.deleteTodoFn(key);
   };
 
