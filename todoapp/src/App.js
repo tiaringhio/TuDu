@@ -12,11 +12,12 @@ class App extends Component {
         text: "",
         completed: false,
         key: "",
-        category: ""
+        category: "",
+        bodyColor: ""
       }
     };
     this.addTodo = this.addTodo.bind(this);
-    this.changeDecorator = this.changeDecorator.bind(this);
+    this.changeColor = this.changeColor.bind(this);
   }
 
   componentDidMount = () => {
@@ -29,17 +30,6 @@ class App extends Component {
     }
   };
 
-  // TODO: This could be used to store the color TODO
-  changeDecorator = async decorator => {
-    await this.setState({
-      decorator: {
-        color: decorator
-      }
-    });
-    localStorage.setItem("decorator", JSON.stringify(this.state.decorator));
-    console.log("Decorators in storage", localStorage.getItem("decorator"));
-  };
-
   addTodo = async todo => {
     await this.setState({
       todos: [...this.state.todos, todo],
@@ -47,10 +37,32 @@ class App extends Component {
         text: "",
         completed: false,
         key: "",
-        category: ""
+        category: "",
+        bodyColor: ""
       }
     });
     localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    console.log("Todos in storage", localStorage.getItem("todos"));
+  };
+
+  changeColor = async (todo, color) => {
+    console.log("received color request", color);
+    const newColor = this.state.todos.map(_todo => {
+      if (todo === _todo) {
+        return {
+          text: todo.text,
+          completed: todo.completed,
+          key: _todo.key,
+          category: _todo.category,
+          bodyColor: color
+        };
+      } else {
+        return _todo;
+      }
+    });
+    await this.setState({ todos: newColor });
+    localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    console.log("todo with new color", newColor);
     console.log("Todos in storage", localStorage.getItem("todos"));
   };
 
@@ -61,7 +73,8 @@ class App extends Component {
           text: todo.text,
           completed: !todo.completed,
           key: _todo.key,
-          category: _todo.category
+          category: _todo.category,
+          bodyColor: _todo.bodyColor
         };
       } else {
         return _todo;
@@ -90,7 +103,7 @@ class App extends Component {
           currentItem={this.state.currentItem}
           updateTodoFn={this.updateTodo}
           deleteTodoFn={this.deleteTodo}
-          changeDecorator={this.changeDecorator}
+          changeColorFn={this.changeColor}
         />
       </div>
     );

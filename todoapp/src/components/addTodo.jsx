@@ -11,7 +11,8 @@ class AddToDo extends Component {
       currentItem: {
         text: "",
         key: "",
-        category: ""
+        category: "",
+        bodyColor: ""
       }
     };
   }
@@ -73,16 +74,12 @@ class AddToDo extends Component {
         text: newWord,
         completed: false,
         key: Date.now(),
-        category: newDecorator
+        category: newDecorator,
+        bodyColor: ""
       }
     });
     console.log();
   };
-
-  // TODO: This could be used to change the card color
-  // submitDecorator = e => {
-  //   this.props.changeDecorator(this.state.decorator);
-  // };
 
   submitTodo = e => {
     this.props.addTodo(this.state.currentItem);

@@ -2,18 +2,38 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "./todoItem.css";
-import ColorSelector from "../components/colorSelector";
-
+import { TwitterPicker } from "react-color";
 class ToDoItem extends Component {
+  state = {
+    displayColorPicker: false,
+    background: "#fff"
+  };
   render() {
     const { todo } = this.props;
-    const { decorator } = this.props;
+
+    const popover = {
+      position: "absolute",
+      zIndex: "2"
+    };
+
+    const cover = {
+      position: "fixed",
+      top: "0px",
+      right: "0px",
+      bottom: "0px",
+      left: "0px"
+    };
+
     return (
       <div>
         <Card
           className="card text-center"
           key={todo.key}
-          style={({ width: "18em" }, { height: "12em" })}
+          style={
+            ({ width: "18em" },
+            { height: "12em" },
+            { backgroundColor: todo.bodyColor })
+          }
         >
           <Card.Header
             className="category header"
@@ -21,7 +41,7 @@ class ToDoItem extends Component {
           >
             {todo.category}
           </Card.Header>
-          <Card.Body className={this.changeCardColor}>
+          <Card.Body className="card-body">
             {" "}
             <Card.Title className={this.changeCardTitle()} type="text">
               {todo.text}
@@ -42,12 +62,53 @@ class ToDoItem extends Component {
             >
               Delete
             </Button>{" "}
+            <h4
+              className="menu-card"
+              variant="outline-primary"
+              size="sm"
+              onClick={this.handleClick}
+            >
+              :
+            </h4>
+            {this.state.displayColorPicker ? (
+              <div style={popover}>
+                <div style={cover} onClick={this.handleClose} />
+                <TwitterPicker
+                  triangle="hide"
+                  color={this.state.background}
+                  onChangeComplete={this.handleChangeComplete}
+                />
+              </div>
+            ) : null}
           </Card.Body>
         </Card>
       </div>
     );
   }
+  /**
+   * body color operations
+   */
+  handleClick = () => {
+    this.setState({ displayColorPicker: !this.state.displayColorPicker });
+  };
 
+  handleClose = () => {
+    this.setState({ displayColorPicker: false });
+  };
+
+  handleChangeComplete = color => {
+    console.log("Previous color", this.state.background);
+    this.setState({ background: color.hex });
+    this.colorChange(this.state.background);
+  };
+
+  colorChange = () => {
+    this.props.changeCardColorFn(this.props.todo, this.state.background);
+  };
+
+  /**
+   * rest of things
+   */
   toggleTodo = () => {
     console.log("pressed");
     this.props.updateTodoFn(this.props.todo);
@@ -61,12 +122,6 @@ class ToDoItem extends Component {
   changeCardTitle() {
     let classes = "todoItem";
     classes += this.props.todo.completed ? " completed" : "";
-    return classes;
-  }
-  // TODO: Color selector
-  changeCardColor() {
-    let classes = "card text-centeritemBody";
-    classes += this.props.decorator.color ? " bg-secondary " : "";
     return classes;
   }
 }

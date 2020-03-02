@@ -20,6 +20,7 @@ class ToDoList extends Component {
                   deleteTodoFn={() => {
                     this.deleteTodoList(_todo.key);
                   }}
+                  changeCardColorFn={this.changeCardColor}
                 ></ToDoItem>
               );
             })}
@@ -28,6 +29,9 @@ class ToDoList extends Component {
       </div>
     );
   }
+  changeCardColor = (todo, color) => {
+    this.props.changeColorFn(todo, color);
+  };
 
   updateTodo = todo => {
     this.props.updateTodoFn(todo);

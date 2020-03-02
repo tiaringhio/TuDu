@@ -6,12 +6,16 @@
   text-decoration: line-through;
 }
 
-.card {
-  background-color: blue;
-}
-
-.color-selector {
-  position: fixed;
+.menu-card {
+  position: absolute;
   bottom: 0;
   right: 0;
+  margin-bottom: 5px;
+  margin-right: 10px;
 }
+/* .carta {
+  background-color: cadetblue;
+}
+.card-body {
+  background-color: cadetblue;
+} */

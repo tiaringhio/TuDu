@@ -14,11 +14,42 @@
   
   - [Table of Contents](#table-of-contents)
   - [About The Project](#about-the-project)
-   
+  - [Features](#features)
+    - [Add Item](#add-item)
+    - [Categories](#categoruies)
+    - [Item Management](#item-management)
+    - [Colors](#colors)
+
    <!-- ABOUT THE PROJECT -->
-   ## About The Project
-   **TooDoo**
-   TooDoo is a simple To-Do List Web App written in React, a JavaScript framework created by the smart folks at Facebook
+
+## About The Project
+
+**TooDoo**
+TooDoo is a simple To-Do List Web App written in React, a JavaScript framework created by the smart folks at Facebook.
+
+## Features
+
+This is a comprehensive list of all the features available in TuDu.
+
+### Add Item
+
+Simply digit your item and press the button **Add Task** to add it to your table.
+
+### Categories
+
+When adding a new item you can add a category with this simple sintax:
+
+> New Item Text #Category
+
+The category will be shown in the header of your item
+
+### Item Management
+
+You can set your items as completed by pressing on the **Done** button or you can delete the item of your choice by pressing the **Delete** button.
+
+### Colors
+
+You can choose the card color of your liking by pressing the **:** button on the bottom right side of the card and select which color you want, you can even enter a Hex value!
 
 ## LICENSE
 
