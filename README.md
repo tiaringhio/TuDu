@@ -1,13 +1,17 @@
 <!-- PROJECT LOGO -->
   <br />
     <p align="center">
-  <a href="https://github.com/danielepelleg/VoIP">
-    <img src="todoapp/resources/images/todo.png" alt="Logo" width="130" height="130">
+  <a href="https://github.com/tiaringhio/TuDu">
+    <img src="./public/todo.png" alt="Logo" width="130" height="130">
   </a>
   <h1 align="center">TuDu</h1>
   <p align="center">
-    A simple To-Do Web App written in React
+    A simple To-Do Web App written in React.
   </p>
+  <p align="center">
+    <a href=" align="center"" align="center">Live Demo</a>
+  </p>
+  
   
   <!-- TABLE OF CONTENTS -->
   ## Table of Contents
