@@ -17,6 +17,11 @@
   
   - [Table of Contents](#table-of-contents)
   - [About The Project](#about-the-project)
+  - [Installation](#installation)
+    - [Bootstrap](#bootstrap)
+    - [Splash Screen](#splash-screen)
+    - [Color picker](#color-picker)
+    - [Depcheck](#depcheck)
   - [Features](#features)
     - [Add Item](#add-item)
     - [Categories](#categories)
@@ -30,6 +35,42 @@
 
 **TooDoo**
 TooDoo is a simple To-Do List Web App written in React, a JavaScript framework created by the smart folks at Facebook.
+
+## Installation
+
+This project uses some very useful npm dependencies createad by the React community, here's which dependency is used and how to install:
+
+### Bootstrap
+
+[react-bootstrap](https://github.com/react-bootstrap/react-bootstrap)
+
+This package is needed to use Bootstrap with React, all components are available with minimal to no adjustments.
+
+`npm install react-bootstrap bootstrap`
+
+### Splash screen
+
+[react-welcome-page](https://github.com/utarit/react-welcome-page)
+
+This is used to create the awesome splashscreen you see when loading the app, it's fully customizable inside the `splashScreen` component, you can follow the likn's instruction.
+
+`npm install --save react-welcome-page`
+
+### Color picker
+
+[react-color](https://github.com/casesandberg/react-color/)
+
+This is used to add the color picker to the app, it allows the user to change the card's background color. It's fully customizable, there's a lot of picker style to choose from.
+
+`npm install react-color --save`
+
+### Depcheck
+
+[depcheck](https://github.com/depcheck/depcheck)
+
+Used to check the dependencies used, remove the unused ones and install the missing ones.
+
+`npm install -g depcheck`
 
 ## Features
 

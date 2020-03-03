@@ -22,14 +22,14 @@ class ToDoItem extends Component {
 
     const cover = {
       position: "fixed",
-      top: "0px",
-      right: "0px",
-      bottom: "0px",
-      left: "0px"
+      top: "10px",
+      right: "10px",
+      bottom: "10px",
+      left: "10px"
     };
 
     return (
-      <div>
+      <div classes="card-container">
         <Card
           className="cardItem"
           key={todo.key}

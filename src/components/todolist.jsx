@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./todolist.css";
 import Container from "react-bootstrap/Container";
 import ToDoItem from "../components/todoItem";
 import CardColumns from "react-bootstrap/CardColumns";
@@ -10,7 +11,7 @@ class ToDoList extends Component {
     return (
       <div>
         <Container className="container-fluid">
-          <CardColumns>
+          <CardColumns className="card-columns">
             {todos.map(_todo => {
               return (
                 <ToDoItem
