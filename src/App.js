@@ -91,8 +91,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SplashScreen />
         <Header />
+        <SplashScreen />
         <AddToDo addTodo={this.addTodo} />
         <ToDoList
           handleInput={this.handleInput}

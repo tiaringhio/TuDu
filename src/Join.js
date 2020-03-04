@@ -42,7 +42,7 @@ const Join = ({ history }) => {
           .signInWithPopup(provider)
           .then(result => {
             console.log(result);
-            history.push("/reports");
+            history.push("/home");
             Auth.setLoggedIn(true);
           })
           .catch(e => setErrors(e.message));

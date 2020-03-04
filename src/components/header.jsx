@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 
 class Header extends Component {
   render() {
+    // const { isLoggedIn } = useContext(AuthContext);
     return (
       <div className="text-center mb-3">
         <Card style={({ height: "25em" }, { background: "#2962ff" })}>

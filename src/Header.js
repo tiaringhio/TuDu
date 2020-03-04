@@ -14,7 +14,7 @@ const Header = () => {
       ))}
       {isLoggedIn && (
         <li>
-          <Link to="/reports">Reports</Link>
+          <Link to="/app">Reports</Link>
         </li>
       )}
     </ul>
