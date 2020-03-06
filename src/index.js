@@ -3,12 +3,9 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import routes from "./routes.js";
-import Header from "./components/header";
-// import "./styles.css";
 import protectedRoutes from "./protectedRoutes";
 import * as firebase from "firebase";
 import firebaseConfig from "./firebase.config";
-
 import ProtectedRouteHoc from "./ProtectedRouteHoc";
 
 firebase.initializeApp(firebaseConfig);
@@ -30,7 +27,7 @@ function App() {
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>
-      {/* Is logged in? {JSON.stringify(isLoggedIn)} */}
+      Is logged in? {JSON.stringify(isLoggedIn)}
       <div className="App">
         <Router>
           <Switch>

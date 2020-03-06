@@ -5,7 +5,7 @@ const protectedRoutes = [
   {
     name: "home",
     exact: true,
-    path: "/home",
+    path: "/",
     main: props => <App {...props} />,
     public: false
   }
