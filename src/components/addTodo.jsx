@@ -78,7 +78,6 @@ class AddToDo extends Component {
         bodyColor: ""
       }
     });
-    console.log();
   };
 
   submitTodo = e => {

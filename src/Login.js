@@ -7,7 +7,6 @@ import "./login.css";
 
 const Login = ({ history }) => {
   const [error, setErrors] = useState("");
-
   const Auth = useContext(AuthContext);
 
   const signInWithGoogle = () => {
@@ -21,11 +20,25 @@ const Login = ({ history }) => {
           .signInWithPopup(provider)
           .then(result => {
             console.log(result);
-            history.push("/");
+            const account = {
+              useruid: result.user.uid,
+              displayname: result.user.displayName
+            };
+            console.log("account created", result.user.uid);
+            firebase
+              .firestore()
+              .collection("users")
+              .doc(result.user.uid)
+              .add(account);
             Auth.setLoggedIn(true);
+            // history.push("/");
           })
           .catch(e => setErrors(e.message));
       });
+  };
+
+  const goHome = () => {
+    history.push("/");
   };
   return (
     <div
@@ -47,6 +60,7 @@ const Login = ({ history }) => {
         />
         Login With Google
       </button>
+      <button onClick={() => goHome()}>Go Home</button>
     </div>
   );
 };
