@@ -5,11 +5,11 @@ class SplashScreen extends Component {
   render() {
     return (
       <Welcome
-        loopDuration={1500}
+        loopDuration={1000}
         data={[
           {
             backgroundColor: "#2962ff",
-            textColor: "#fff",
+            textColor: "#ffffff",
             text: "TuDu: ToDo App",
             image: require("./todo.png"),
             textAnimation: "pulse"

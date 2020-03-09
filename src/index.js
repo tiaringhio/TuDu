@@ -14,37 +14,23 @@ export const AuthContext = React.createContext(null);
 
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const [sessionUID, setSessionUID] = useState("");
 
   function readSession() {
     const user = window.sessionStorage.getItem(
       `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
     );
-    //
     if (user) {
       setLoggedIn(true);
     }
   }
-  function getSessionUID() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        setSessionUID(user.uid);
-      }
-    });
-  }
 
   useEffect(() => {
     readSession();
-    getSessionUID();
   }, []);
 
-  // console.log(window.sessionStorage.getItem(value));
   return (
-    <AuthContext.Provider
-      value={({ isLoggedIn, setLoggedIn }, { sessionUID, setSessionUID })}
-    >
-      Is logged in? {JSON.stringify(isLoggedIn)}, UID:{" "}
-      {JSON.stringify(sessionUID)}}
+    <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>
+      {/* Is logged in? {JSON.stringify(isLoggedIn)}, UID:{" "} */}
       <div className="App">
         <Router>
           <Switch>

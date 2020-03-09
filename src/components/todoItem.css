@@ -58,7 +58,7 @@
   animation: strike 0.3s linear;
 }
 
-.palette-icon {
+.clock-icon {
   cursor: pointer;
   position: absolute;
   bottom: 0;
@@ -83,4 +83,23 @@
   right: 0;
   margin-bottom: 7px;
   margin-right: 50px;
+}
+
+.palette-icon {
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 7px;
+  margin-right: 70px;
+}
+
+.todo-date {
+  font-weight: bold;
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 3px;
+  margin-left: 5px;
 }

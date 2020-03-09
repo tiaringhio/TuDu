@@ -1,6 +1,11 @@
 .container-fluid {
   min-height: 500px;
 }
+
 .card-columns {
   min-height: 500px;
 }
+/* 
+.date-picker {
+  display: none;
+} */

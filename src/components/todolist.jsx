@@ -1,13 +1,38 @@
 import React, { Component } from "react";
 import "./todolist.css";
+import * as firebase from "firebase";
 import Container from "react-bootstrap/Container";
 import ToDoItem from "../components/todoItem";
 import CardColumns from "react-bootstrap/CardColumns";
 
 class ToDoList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: [],
+      uid: ""
+    };
+  }
+
+  componentWillMount = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      this.setState({ uid: user.uid });
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(this.state.uid)
+        .collection("user_todos")
+        .get()
+        .then(querySnapshot => {
+          const data = querySnapshot.docs.map(doc => doc.data());
+          this.setState({ todos: data });
+        });
+    });
+  };
+
   render() {
     const { todos } = this.props;
-
+    console.log(todos);
     return (
       <div>
         <Container className="container-fluid">
@@ -22,6 +47,7 @@ class ToDoList extends Component {
                     this.deleteTodoList(_todo.key);
                   }}
                   changeCardColorFn={this.changeCardColor}
+                  changeDateFn={this.addDate}
                 ></ToDoItem>
               );
             })}
@@ -40,6 +66,11 @@ class ToDoList extends Component {
 
   deleteTodoList = key => {
     this.props.deleteTodoFn(key);
+  };
+
+  addDate = (todo, date) => {
+    console.log("date received in list");
+    this.props.changeDateFn(todo, date);
   };
 }
 

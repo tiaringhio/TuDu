@@ -16,45 +16,47 @@ class App extends Component {
         key: "",
         category: "",
         bodyColor: "",
-        documentID: ""
-      }
+        date: ""
+      },
+      uid: ""
     };
     this.addTodo = this.addTodo.bind(this);
     this.changeColor = this.changeColor.bind(this);
+    this.changeDate = this.changeDate.bind(this);
   }
 
-  componentDidMount = () => {
-    const todos = localStorage.getItem("todos");
-    if (todos) {
-      const savedTodos = JSON.parse(todos);
-      this.setState({ todos: savedTodos });
-    } else {
-      console.log("No todos");
-    }
+  componentWillMount = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      this.setState({ uid: user.uid });
+      firebase
+        .firestore()
+        // .settings({ timestampsInSnapshots: false })
+        .collection("users")
+        .doc(this.state.uid)
+        .collection("user_todos")
+        .get()
+        .then(querySnapshot => {
+          const data = querySnapshot.docs.map(doc => doc.data());
+          console.log("todos from firestore", data);
+          this.setState({ todos: data });
+        });
+    });
   };
 
   addTodo = async todo => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        const sessionUID = user.uid;
-        const newDocumentName = todo.key.toString();
-        console.log(sessionUID);
-        console.log(newDocumentName);
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(sessionUID)
-          .collection("user_todos")
-          .doc(newDocumentName)
-          .set(todo)
-          .then(function() {
-            console.log("element added");
-          })
-          .catch(function(error) {
-            console.error("error adding document", error);
-          });
-      }
-    });
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(this.state.uid)
+      .collection("user_todos")
+      .doc(todo.key.toString())
+      .set(todo)
+      .then(function() {
+        console.log("element added");
+      })
+      .catch(function(error) {
+        console.error("error adding document", error);
+      });
     await this.setState({
       todos: [...this.state.todos, todo],
       currentItem: {
@@ -62,35 +64,28 @@ class App extends Component {
         completed: false,
         key: "",
         category: "",
-        bodyColor: ""
+        bodyColor: "",
+        date: ""
       }
     });
-    localStorage.setItem("todos", JSON.stringify(this.state.todos));
   };
 
   changeColor = async (todo, color) => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        const sessionUID = user.uid;
-        const elementToChangeColor = todo.key.toString();
-        console.log(elementToChangeColor);
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(sessionUID)
-          .collection("user_todos")
-          .doc(elementToChangeColor)
-          .update({
-            bodyColor: color
-          })
-          .then(function() {
-            console.log("color updated");
-          })
-          .catch(function(error) {
-            console.error("error when updating color", error);
-          });
-      }
-    });
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(this.state.uid)
+      .collection("user_todos")
+      .doc(todo.key.toString())
+      .update({
+        bodyColor: color
+      })
+      .then(function() {
+        console.log("color updated");
+      })
+      .catch(function(error) {
+        console.error("error when updating color", error);
+      });
     const newColor = this.state.todos.map(_todo => {
       if (todo === _todo) {
         return {
@@ -98,39 +93,32 @@ class App extends Component {
           completed: todo.completed,
           key: _todo.key,
           category: _todo.category,
-          bodyColor: color
+          bodyColor: color,
+          date: todo.date
         };
       } else {
         return _todo;
       }
     });
     await this.setState({ todos: newColor });
-    localStorage.setItem("todos", JSON.stringify(this.state.todos));
   };
 
   updateTodo = async todo => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        const sessionUID = user.uid;
-        const elementoToUpdate = todo.key.toString();
-        console.log(elementoToUpdate);
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(sessionUID)
-          .collection("user_todos")
-          .doc(elementoToUpdate)
-          .update({
-            completed: !todo.completed
-          })
-          .then(function() {
-            console.log("element updated");
-          })
-          .catch(function(error) {
-            console.error("error updating element", error);
-          });
-      }
-    });
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(this.state.uid)
+      .collection("user_todos")
+      .doc(todo.key.toString())
+      .update({
+        completed: !todo.completed
+      })
+      .then(function() {
+        console.log("element updated");
+      })
+      .catch(function(error) {
+        console.error("error updating element", error);
+      });
     const newTodos = this.state.todos.map(_todo => {
       if (todo === _todo) {
         return {
@@ -138,41 +126,67 @@ class App extends Component {
           completed: !todo.completed,
           key: _todo.key,
           category: _todo.category,
-          bodyColor: _todo.bodyColor
+          bodyColor: _todo.bodyColor,
+          date: _todo.date
         };
       } else {
         return _todo;
       }
     });
     await this.setState({ todos: newTodos });
-    localStorage.setItem("todos", JSON.stringify(this.state.todos));
+  };
+
+  changeDate = async (todo, date) => {
+    console.log("date received in app");
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(this.state.uid)
+      .collection("user_todos")
+      .doc(todo.key.toString())
+      .update({
+        date: date
+      })
+      .then(function() {
+        console.log("element updated");
+      })
+      .catch(function(error) {
+        console.error("error updating element", error);
+      });
+    const newDate = this.state.todos.map(_todo => {
+      if (todo === _todo) {
+        return {
+          text: todo.text,
+          completed: todo.completed,
+          key: _todo.key,
+          category: _todo.category,
+          bodyColor: todo.bodyColor,
+          date: date
+        };
+      } else {
+        return _todo;
+      }
+    });
+    await this.setState({ todos: newDate });
   };
 
   deleteTodo = async key => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        const sessionUID = user.uid;
-        const elementoToDelete = key.toString();
-        console.log(elementoToDelete);
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(sessionUID)
-          .collection("user_todos")
-          .doc(elementoToDelete)
-          .delete()
-          .then(function() {
-            console.log("element deleted");
-          })
-          .catch(function(error) {
-            console.error("Error removing document: ", error);
-          });
-      }
-    });
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(this.state.uid)
+      .collection("user_todos")
+      .doc(key.toString())
+      .delete()
+      .then(function() {
+        console.log("element deleted");
+      })
+      .catch(function(error) {
+        console.error("Error removing document: ", error);
+      });
     const filteredTodos = this.state.todos.filter(todo => todo.key !== key);
     await this.setState({ todos: filteredTodos });
     console.log(this.state.todos);
-    localStorage.setItem("todos", JSON.stringify(this.state.todos));
   };
 
   render() {
@@ -188,6 +202,7 @@ class App extends Component {
           updateTodoFn={this.updateTodo}
           deleteTodoFn={this.deleteTodo}
           changeColorFn={this.changeColor}
+          changeDateFn={this.changeDate}
         />
       </div>
     );
