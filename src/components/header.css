@@ -1,0 +1,25 @@
+/* .card-header {
+  padding-bottom: 40px;
+} */
+
+.title {
+  color: white;
+  padding-bottom: 35px;
+}
+
+.logout {
+  color: white;
+  position: absolute;
+  top: 25px;
+  right: 70px;
+  cursor: pointer;
+}
+
+.propic {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}

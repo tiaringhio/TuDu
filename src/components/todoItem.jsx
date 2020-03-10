@@ -2,19 +2,26 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import "./todoItem.css";
 import { TwitterPicker } from "react-color";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
+import Moment from "react-moment";
+import moment from "moment";
 
 class ToDoItem extends Component {
   state = {
     displayColorPicker: false,
-    background: "#fff"
+    displayDatePicker: false,
+    background: "#fff",
+    date: new Date()
   };
+
   render() {
     const { todo } = this.props;
-
     const popover = {
       position: "absolute",
       zIndex: "2"
@@ -27,7 +34,6 @@ class ToDoItem extends Component {
       bottom: "10px",
       left: "10px"
     };
-
     return (
       <div classes="card-container">
         <Card
@@ -54,16 +60,17 @@ class ToDoItem extends Component {
             >
               {todo.text}
             </Card.Title>
-            <span>
-              <FontAwesomeIcon
-                className="delete-icon"
-                color="#707070"
-                icon={faTrash}
-                onClick={() => {
-                  this.deleteTodoItem(todo.key);
-                }}
-              />
-            </span>
+            <Moment className="todo-date" format="DD/MM/YY, HH:mm">
+              {todo.date}
+            </Moment>
+            <FontAwesomeIcon
+              className="delete-icon"
+              color="#707070"
+              icon={faTrash}
+              onClick={() => {
+                this.deleteTodoItem(todo.key);
+              }}
+            />
             <FontAwesomeIcon
               className="complete-icon"
               color="#707070"
@@ -76,6 +83,12 @@ class ToDoItem extends Component {
               icon={faPalette}
               onClick={this.handleClick}
             />
+            <FontAwesomeIcon
+              className="clock-icon"
+              color="#707070"
+              icon={faClock}
+              onClick={this.displayDatePicker}
+            />
             {this.state.displayColorPicker ? (
               <div style={popover}>
                 <div style={cover} onClick={this.handleClose} />
@@ -86,11 +99,25 @@ class ToDoItem extends Component {
                 />
               </div>
             ) : null}
+            {this.state.displayDatePicker == true ? (
+              <div>
+                <DatePicker
+                  selected={this.state.date}
+                  onChange={date => this.setState({ date }, this.updateDate)}
+                  showTimeSelect
+                  timeFormat="HH:mm"
+                  timeIntervals={15}
+                  timeCaption="time"
+                  dateFormat="dd/MM/yy HH:mm"
+                />
+              </div>
+            ) : null}
           </Card.Body>
         </Card>
       </div>
     );
   }
+
   /**
    * body color operations
    */
@@ -109,6 +136,24 @@ class ToDoItem extends Component {
 
   colorChange = () => {
     this.props.changeCardColorFn(this.props.todo, this.state.background);
+  };
+
+  /**
+   * date picker operations
+   */
+  displayDatePicker = () => {
+    this.setState({ displayDatePicker: !this.state.displayDatePicker });
+  };
+
+  handleDateChange = date => {
+    this.setState({
+      date: date
+    });
+  };
+
+  updateDate = () => {
+    console.log("date to change: ", this.state.date);
+    this.props.changeDateFn(this.props.todo, this.state.date);
   };
 
   /**
