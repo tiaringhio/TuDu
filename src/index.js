@@ -4,8 +4,8 @@ import ReactDOM from "react-dom";
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import routes from "./routes.js";
 import protectedRoutes from "./protectedRoutes";
-import * as firebase from "firebase";
-import firebaseConfig from "./firebase.config";
+import firebase from "firebase";
+import firebaseConfig from "./firebaseConfig";
 import ProtectedRouteHoc from "./ProtectedRouteHoc";
 
 firebase.initializeApp(firebaseConfig);
