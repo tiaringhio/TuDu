@@ -32,7 +32,7 @@ function App() {
     <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>
       {/* Is logged in? {JSON.stringify(isLoggedIn)}, UID:{" "} */}
       <div className="App">
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             {protectedRoutes.map(route => (
               <ProtectedRouteHoc
