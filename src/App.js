@@ -30,7 +30,6 @@ class App extends Component {
       this.setState({ uid: user.uid });
       firebase
         .firestore()
-        // .settings({ timestampsInSnapshots: false })
         .collection("users")
         .doc(this.state.uid)
         .collection("user_todos")

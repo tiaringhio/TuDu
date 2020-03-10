@@ -60,7 +60,7 @@ class ToDoItem extends Component {
             >
               {todo.text}
             </Card.Title>
-            <Moment className="todo-date" format="MM/DD/YY, HH:mm">
+            <Moment className="todo-date" format="DD/MM/YY, HH:mm">
               {todo.date}
             </Moment>
             <FontAwesomeIcon
