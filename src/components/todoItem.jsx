@@ -10,7 +10,6 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import Moment from "react-moment";
-import moment from "moment";
 
 class ToDoItem extends Component {
   state = {
@@ -22,6 +21,7 @@ class ToDoItem extends Component {
 
   render() {
     const { todo } = this.props;
+
     const popover = {
       position: "absolute",
       zIndex: "2"
@@ -100,16 +100,19 @@ class ToDoItem extends Component {
               </div>
             ) : null}
             {this.state.displayDatePicker == true ? (
-              <div>
-                <DatePicker
-                  selected={this.state.date}
-                  onChange={date => this.setState({ date }, this.updateDate)}
-                  showTimeSelect
-                  timeFormat="HH:mm"
-                  timeIntervals={15}
-                  timeCaption="time"
-                  dateFormat="dd/MM/yy HH:mm"
-                />
+              <div style={popover}>
+                <div>
+                  <DatePicker
+                    selected={this.state.date}
+                    onChange={date => this.setState({ date }, this.updateDate)}
+                    showTimeSelect
+                    showTimeSelectOnly
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    timeCaption="time"
+                    dateFormat="dd/MM/yy HH:mm"
+                  />
+                </div>
               </div>
             ) : null}
           </Card.Body>

@@ -3,7 +3,7 @@ import Header from "./components/header";
 import ToDoList from "./components/todolist";
 import AddToDo from "./components/addTodo";
 import SplashScreen from "./components/splashScreen";
-import * as firebase from "firebase";
+import app from "./firebaseConfig.js";
 
 class App extends Component {
   constructor(props) {
@@ -26,9 +26,9 @@ class App extends Component {
   }
 
   componentWillMount = () => {
-    firebase.auth().onAuthStateChanged(user => {
+    app.auth().onAuthStateChanged(user => {
       this.setState({ uid: user.uid });
-      firebase
+      app
         .firestore()
         .collection("users")
         .doc(this.state.uid)
@@ -43,7 +43,7 @@ class App extends Component {
   };
 
   addTodo = async todo => {
-    firebase
+    app
       .firestore()
       .collection("users")
       .doc(this.state.uid)
@@ -70,7 +70,7 @@ class App extends Component {
   };
 
   changeColor = async (todo, color) => {
-    firebase
+    app
       .firestore()
       .collection("users")
       .doc(this.state.uid)
@@ -103,7 +103,7 @@ class App extends Component {
   };
 
   updateTodo = async todo => {
-    firebase
+    app
       .firestore()
       .collection("users")
       .doc(this.state.uid)
@@ -136,8 +136,7 @@ class App extends Component {
   };
 
   changeDate = async (todo, date) => {
-    console.log("date received in app");
-    firebase
+    app
       .firestore()
       .collection("users")
       .doc(this.state.uid)
@@ -170,7 +169,7 @@ class App extends Component {
   };
 
   deleteTodo = async key => {
-    firebase
+    app
       .firestore()
       .collection("users")
       .doc(this.state.uid)

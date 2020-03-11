@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./todolist.css";
-import * as firebase from "firebase";
+import app from "../firebaseConfig";
 import Container from "react-bootstrap/Container";
 import ToDoItem from "../components/todoItem";
 import CardColumns from "react-bootstrap/CardColumns";
@@ -15,9 +15,9 @@ class ToDoList extends Component {
   }
 
   componentWillMount = () => {
-    firebase.auth().onAuthStateChanged(user => {
+    app.auth().onAuthStateChanged(user => {
       this.setState({ uid: user.uid });
-      firebase
+      app
         .firestore()
         .collection("users")
         .doc(this.state.uid)

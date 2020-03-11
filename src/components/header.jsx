@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import * as firebase from "firebase";
 import "./header.css";
+import app from "../firebaseConfig";
 
 class Header extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class Header extends Component {
   }
 
   componentWillMount = () => {
-    firebase.auth().onAuthStateChanged(user => {
+    app.auth().onAuthStateChanged(user => {
       this.setState({ photoURL: user.photoURL });
     });
   };
@@ -37,7 +38,7 @@ class Header extends Component {
   }
 
   logOut = () => {
-    firebase.auth().signOut();
+    app.auth().signOut();
     window.location.reload(false);
   };
 }
