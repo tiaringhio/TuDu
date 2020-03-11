@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
+import "./addTodo.css";
 
 class AddToDo extends Component {
   constructor() {
@@ -19,7 +20,7 @@ class AddToDo extends Component {
   }
   render() {
     return (
-      <div className="row h-100">
+      <div className="row h-100 padding-for-input">
         <div className="col-sm-12 my-auto">
           <div className="w-25 mx-auto">
             <div className="input-group mb-3">

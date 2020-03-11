@@ -112,6 +112,7 @@ class ToDoItem extends Component {
                   onClick={this.handleClose}
                 >
                   <KeyboardDatePicker
+                    className="date-picker"
                     autoOk={true}
                     disablePast={true}
                     margin="normal"

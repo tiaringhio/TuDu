@@ -20,7 +20,7 @@ class Header extends Component {
 
   render() {
     return (
-      <div className="text-center mb-3">
+      <div className="shadow">
         <Card
           className="card-header"
           style={({ height: "25em" }, { background: "#2962ff" })}
