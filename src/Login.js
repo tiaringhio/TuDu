@@ -3,7 +3,6 @@ import { AuthContext } from "./Auth.js";
 import * as firebase from "firebase";
 import { withRouter, Redirect } from "react-router-dom";
 import logo from "./components/todo.png";
-import SplashScreen from "./components/splashScreen";
 import "./login.css";
 import app from "./firebaseConfig.js";
 
@@ -20,7 +19,6 @@ const Login = ({ history }) => {
             useruid: result.user.uid,
             displayname: result.user.displayName
           };
-          console.log("account created", result.user.uid);
           app
             .firestore()
             .collection("users")
