@@ -4,23 +4,23 @@ import "./todoItem.css";
 import { TwitterPicker } from "react-color";
 import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker
-} from "@material-ui/pickers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import Moment from "react-moment";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker
+} from "@material-ui/pickers";
 
 class ToDoItem extends Component {
   state = {
     displayColorPicker: false,
-    displayDatePicker: false,
     background: "#FCB900",
-    date: new Date()
+    date: new Date(),
+    isDatePickerOpen: false
   };
 
   render() {
@@ -93,7 +93,7 @@ class ToDoItem extends Component {
                 className="clock-icon"
                 color="#eeeeee"
                 icon={faClock}
-                onClick={this.displayDatePicker}
+                onClick={() => this.setState({ isDatePickerOpen: true })}
               />
               {this.state.displayColorPicker ? (
                 <div style={popover}>
@@ -105,27 +105,25 @@ class ToDoItem extends Component {
                   />
                 </div>
               ) : null}
-              {this.state.displayDatePicker == true ? (
-                <Grid
-                  container
-                  justify="space-around"
-                  onClick={this.handleClose}
-                >
-                  <KeyboardDatePicker
-                    className="date-picker"
-                    autoOk={true}
-                    disablePast={true}
-                    margin="normal"
-                    id="date-picker-dialog"
-                    label="Date picker dialog"
-                    format="dd/MM/yy"
-                    value={this.state.date}
-                    onChange={date => this.setState({ date }, this.updateDate)}
-                    KeyboardButtonProps={{
-                      "aria-label": "change date"
-                    }}
-                  />
-                </Grid>
+              <Grid container justify="space-around"></Grid>
+              {this.state.isDatePickerOpen == true ? (
+                <KeyboardDatePicker
+                  open={this.state.isDatePickerOpen}
+                  onOpen={() => this.setState({ isDatePickerOpen: true })}
+                  onClose={() => this.setState({ isDatePickerOpen: false })}
+                  className="date-picker"
+                  autoOk={true}
+                  disablePast={true}
+                  margin="normal"
+                  id="date-picker-dialog"
+                  label="Date picker dialog"
+                  format="dd/MM/yy"
+                  value={this.state.date}
+                  onChange={date => this.setState({ date }, this.updateDate)}
+                  KeyboardButtonProps={{
+                    "aria-label": "change date"
+                  }}
+                />
               ) : null}
             </Card.Body>
           </Card>
@@ -133,7 +131,11 @@ class ToDoItem extends Component {
       </MuiPickersUtilsProvider>
     );
   }
-
+  toDate = () => {
+    var timestamp = this.props.todo.date;
+    var date = timestamp.toDate();
+    return date;
+  };
   /**
    * body color operations
    */

@@ -36,7 +36,6 @@ class App extends Component {
         .get()
         .then(querySnapshot => {
           const data = querySnapshot.docs.map(doc => doc.data());
-          console.log("todos from firestore", data);
           this.setState({ todos: data });
         });
     });

@@ -17,7 +17,7 @@
   
   - [Table of Contents](#table-of-contents)
   - [About The Project](#about-the-project)
-  - [Installation](#installation)
+  - [Used in this project](#used-in-this-project)
     - [Bootstrap](#bootstrap)
     - [Splash Screen](#splash-screen)
     - [Color picker](#color-picker)
@@ -25,6 +25,7 @@
     - [Firebase](#firebase)
     - [Moment.js](#moment.js)
     - [Fontawesome](#fontawesome)
+    - [React Router](#react-router)
     - [Depcheck](#depcheck)
   - [Features](#features)
     - [Add Item](#add-item)
@@ -42,7 +43,7 @@
 
 **TuDu** is a simple To-Do List Web App written in **React**, a JavaScript framework created by the smart folks at Facebook, it uses **Firebase** for authentication and **Cloud Firestore** for the database and some really cool packages powered by the npm and GitHub community.
 
-## Installation
+## Used in this project
 
 This project uses some very useful npm dependencies createad by the React community, here's which dependency is used and how to install:
 
@@ -52,15 +53,11 @@ This project uses some very useful npm dependencies createad by the React commun
 
 This package is needed to use Bootstrap with React, all components are available with minimal to no adjustments.
 
-`npm install react-bootstrap bootstrap`
-
 ### Splash screen
 
 [react-welcome-page](https://github.com/utarit/react-welcome-page)
 
 This is used to create the awesome splashscreen you see when loading the app, it's fully customizable inside the `splashScreen` component, you can follow the likn's instruction.
-
-`npm install --save react-welcome-page`
 
 ### Color picker
 
@@ -68,15 +65,11 @@ This is used to create the awesome splashscreen you see when loading the app, it
 
 This is used to add the color picker to the app, it allows the user to change the card's background color. It's fully customizable, there's a lot of picker style to choose from.
 
-`npm install react-color --save`
-
 ### Date Picker
 
 [react-datepicker](https://github.com/Hacker0x01/react-datepicker/)
 
 Use to set a time to a task, it'very customizable. Used with Moment.js to convert the date to a specific format.
-
-`npm install react-datepicker --save`
 
 ### Firebase
 
@@ -84,15 +77,11 @@ Use to set a time to a task, it'very customizable. Used with Moment.js to conver
 
 The application works thank to Firebase, the platform created by Google offers authentication via the major providers such as Google, Facebook GitHub and many others (i chose to use Google for ease of use). Cloud Firestore is a NoSQL, document-oriented database.
 
-`npm install --save firebase`
-
 ### Moment.js
 
 [react-moment](https://github.com/headzoo/react-moment)
 
 Used to convert Firestore timestamps in legible format.
-
-`npm install --save moment react-moment`
 
 ### Fontawesome
 
@@ -100,19 +89,17 @@ Used to convert Firestore timestamps in legible format.
 
 Just some icons, nothing more, nothing less.
 
-`npm i --save @fortawesome/fontawesome-svg-core`
+### React Router
 
-`npm i --save @fortawesome/free-solid-svg-icons`
+React Router is a collection of navigational components that compose declaratively with your application. Using this package i can redirect the user to the right page based on whether he is loged or not.
 
-`npm i --save @fortawesome/react-fontawesome`
+[react-router](https://github.com/ReactTraining/react-router)
 
 ### Depcheck
 
 [depcheck](https://github.com/depcheck/depcheck)
 
 Used to check the dependencies, remove the unused ones and install the missing ones.
-
-`npm install -g depcheck`
 
 ## Features
 
@@ -144,13 +131,13 @@ You can set a time for the task by clicking on the ⏰ icon and choosing date an
 
 ## Authentication
 
-Authentication is provided by Google Firebase, i chose to support Google's own authentication. it can be customized to support Facebook, GitHub and many more.
+Authentication is provided by Google Firebase, i chose to support only Google's own authentication. It can be customized to support Facebook, GitHub and many more.
 
 ## Database
 
-I choose Cloud Firestore for the database, it's reliable, fast and cloud-base, which mmakes it perfect for a web-app. te data is stored securely on Google's servers.
+I chose Cloud Firestore for the database, it's reliable, fast and cloud-based, which makes it perfect for a web-app. The data is stored securely on Google's servers.
 
-## Test / Deploy [![Build Status](https://travis-ci.com/tiaringhio/TuDu.svg?token=4CsoRWc4by6MkvHzh68Q&branch=master)](https://travis-ci.com/tiaringhio/TuDu)[![Netlify Status](https://api.netlify.com/api/v1/badges/806a7370-2aff-429c-9bf6-a0737227fbe4/deploy-status)](https://app.netlify.com/sites/tiaringhiotudu/deploys)
+## Test / Deploy [![Build Status](https://travis-ci.com/tiaringhio/TuDu.svg?token=4CsoRWc4by6MkvHzh68Q&branch=master)](https://travis-ci.com/tiaringhio/TuDu) [![Netlify Status](https://api.netlify.com/api/v1/badges/806a7370-2aff-429c-9bf6-a0737227fbe4/deploy-status)](https://app.netlify.com/sites/tiaringhiotudu/deploys)
 
 This project is tested using Travis CI/CD and deployed to Netlify.
 
