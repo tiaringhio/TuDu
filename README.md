@@ -9,7 +9,7 @@
     A simple To-Do Web App written in React powered by Firebase and Cloud Firestore.
   </p>
   <p align="center">
-    <a href="https://tiaringhio.github.io/TuDu/" target="_blank" align="center">Live Demo</a>
+    <a href="https://tiaringhiotudu.netlify.com/" target="_blank" align="center">Live Demo</a>
   </p>
   
   <!-- TABLE OF CONTENTS -->
@@ -150,9 +150,9 @@ Authentication is provided by Google Firebase, i chose to support Google's own a
 
 I choose Cloud Firestore for the database, it's reliable, fast and cloud-base, which mmakes it perfect for a web-app. te data is stored securely on Google's servers.
 
-## Test / Deploy [![Build Status](https://travis-ci.com/tiaringhio/TuDu.svg?token=4CsoRWc4by6MkvHzh68Q&branch=master)](https://travis-ci.com/tiaringhio/TuDu)
+## Test / Deploy [![Build Status](https://travis-ci.com/tiaringhio/TuDu.svg?token=4CsoRWc4by6MkvHzh68Q&branch=master)](https://travis-ci.com/tiaringhio/TuDu)[![Netlify Status](https://api.netlify.com/api/v1/badges/806a7370-2aff-429c-9bf6-a0737227fbe4/deploy-status)](https://app.netlify.com/sites/tiaringhiotudu/deploys)
 
-This project is tested and deployed to GitHub Pages using Travis CI/CD.
+This project is tested using Travis CI/CD and deployed to Netlify.
 
 ## License
 
