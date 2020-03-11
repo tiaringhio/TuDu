@@ -15,7 +15,7 @@ class App extends Component {
         completed: false,
         key: "",
         category: "",
-        bodyColor: "",
+        bodyColor: "#2962ff",
         date: ""
       },
       uid: ""
@@ -63,7 +63,7 @@ class App extends Component {
         completed: false,
         key: "",
         category: "",
-        bodyColor: "",
+        bodyColor: "#2962ff",
         date: ""
       }
     });

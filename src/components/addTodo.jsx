@@ -12,7 +12,7 @@ class AddToDo extends Component {
         text: "",
         key: "",
         category: "",
-        bodyColor: "",
+        bodyColor: "#FCB900",
         date: ""
       }
     };
@@ -76,7 +76,7 @@ class AddToDo extends Component {
         completed: false,
         key: Date.now(),
         category: newDecorator,
-        bodyColor: "",
+        bodyColor: "#2962ff",
         date: ""
       }
     });

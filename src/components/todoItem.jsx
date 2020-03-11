@@ -2,8 +2,12 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import "./todoItem.css";
 import { TwitterPicker } from "react-color";
-import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
+import Grid from "@material-ui/core/Grid";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker
+} from "@material-ui/pickers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +19,7 @@ class ToDoItem extends Component {
   state = {
     displayColorPicker: false,
     displayDatePicker: false,
-    background: "#fff",
+    background: "#FCB900",
     date: new Date()
   };
 
@@ -35,89 +39,97 @@ class ToDoItem extends Component {
       left: "10px"
     };
     return (
-      <div classes="card-container">
-        <Card
-          className="cardItem"
-          key={todo.key}
-          style={
-            ({ width: "18em" },
-            { height: "12em" },
-            { backgroundColor: todo.bodyColor })
-          }
-        >
-          <Card.Header
-            className="category-header"
-            style={todo.category != "" ? {} : { display: "none" }}
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <div classes="card-container">
+          <Card
+            text="white"
+            className="cardItem"
+            key={todo.key}
+            style={
+              ({ width: "18em" },
+              { height: "12em" },
+              { backgroundColor: todo.bodyColor })
+            }
           >
-            {todo.category}
-          </Card.Header>
-          <Card.Body className="card-body">
-            {" "}
-            <Card.Title
-              className={this.changeCardTitle()}
-              onClick={this.toggleTodo}
-              type="text"
+            <Card.Header
+              className="category-header"
+              style={todo.category != "" ? {} : { display: "none" }}
             >
-              {todo.text}
-            </Card.Title>
-            <Moment className="todo-date" format="DD/MM/YY, HH:mm">
-              {todo.date}
-            </Moment>
-            <FontAwesomeIcon
-              className="delete-icon"
-              color="#707070"
-              icon={faTrash}
-              onClick={() => {
-                this.deleteTodoItem(todo.key);
-              }}
-            />
-            <FontAwesomeIcon
-              className="complete-icon"
-              color="#707070"
-              icon={faCheck}
-              onClick={this.toggleTodo}
-            />
-            <FontAwesomeIcon
-              className="palette-icon"
-              color="#707070"
-              icon={faPalette}
-              onClick={this.handleClick}
-            />
-            <FontAwesomeIcon
-              className="clock-icon"
-              color="#707070"
-              icon={faClock}
-              onClick={this.displayDatePicker}
-            />
-            {this.state.displayColorPicker ? (
-              <div style={popover}>
-                <div style={cover} onClick={this.handleClose} />
-                <TwitterPicker
-                  triangle="hide"
-                  color={this.state.background}
-                  onChangeComplete={this.handleChangeComplete}
-                />
-              </div>
-            ) : null}
-            {this.state.displayDatePicker == true ? (
-              <div style={popover}>
-                <div>
-                  <DatePicker
-                    selected={this.state.date}
-                    onChange={date => this.setState({ date }, this.updateDate)}
-                    showTimeSelect
-                    showTimeSelectOnly
-                    timeFormat="HH:mm"
-                    timeIntervals={15}
-                    timeCaption="time"
-                    dateFormat="dd/MM/yy HH:mm"
+              {todo.category}
+            </Card.Header>
+            <Card.Body className="card-body">
+              {" "}
+              <Card.Title
+                className={this.changeCardTitle()}
+                onClick={this.toggleTodo}
+                type="text"
+              >
+                {todo.text}
+              </Card.Title>
+              <Moment className="todo-date" format="DD/MM/YY">
+                {todo.date}
+              </Moment>
+              <FontAwesomeIcon
+                className="delete-icon"
+                color="#eeeeee"
+                icon={faTrash}
+                onClick={() => {
+                  this.deleteTodoItem(todo.key);
+                }}
+              />
+              <FontAwesomeIcon
+                className="complete-icon"
+                color="#eeeeee"
+                icon={faCheck}
+                onClick={this.toggleTodo}
+              />
+              <FontAwesomeIcon
+                className="palette-icon"
+                color="#eeeeee"
+                icon={faPalette}
+                onClick={this.handleClick}
+              />
+              <FontAwesomeIcon
+                className="clock-icon"
+                color="#eeeeee"
+                icon={faClock}
+                onClick={this.displayDatePicker}
+              />
+              {this.state.displayColorPicker ? (
+                <div style={popover}>
+                  <div style={cover} onClick={this.handleClose} />
+                  <TwitterPicker
+                    triangle="hide"
+                    color={this.state.background}
+                    onChangeComplete={this.handleChangeComplete}
                   />
                 </div>
-              </div>
-            ) : null}
-          </Card.Body>
-        </Card>
-      </div>
+              ) : null}
+              {this.state.displayDatePicker == true ? (
+                <Grid
+                  container
+                  justify="space-around"
+                  onClick={this.handleClose}
+                >
+                  <KeyboardDatePicker
+                    autoOk={true}
+                    disablePast={true}
+                    margin="normal"
+                    id="date-picker-dialog"
+                    label="Date picker dialog"
+                    format="dd/MM/yy"
+                    value={this.state.date}
+                    onChange={date => this.setState({ date }, this.updateDate)}
+                    KeyboardButtonProps={{
+                      "aria-label": "change date"
+                    }}
+                  />
+                </Grid>
+              ) : null}
+            </Card.Body>
+          </Card>
+        </div>
+      </MuiPickersUtilsProvider>
     );
   }
 
