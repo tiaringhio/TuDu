@@ -5,13 +5,14 @@ import { TwitterPicker } from "react-color";
 import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { faPalette } from "@fortawesome/free-solid-svg-icons";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrash,
+  faCheck,
+  faPalette,
+  faClock,
+  faTimes
+} from "@fortawesome/free-solid-svg-icons";
 import Moment from "react-moment";
-
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
@@ -152,7 +153,7 @@ class ToDoItem extends Component {
                 </div>
               ) : null}
               <Grid container justify="space-around"></Grid>
-              {this.state.isDatePickerOpen == true ? (
+              {this.state.isDatePickerOpen === true ? (
                 <KeyboardDatePicker
                   open={this.state.isDatePickerOpen}
                   onOpen={() => this.setState({ isDatePickerOpen: true })}

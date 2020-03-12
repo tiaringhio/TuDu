@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
-import * as firebase from "firebase";
 import "./header.css";
 import app from "../firebaseConfig";
 

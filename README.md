@@ -107,7 +107,7 @@ This is a comprehensive list of all the features available in TuDu.
 
 ### Add Item
 
-Simply digit your item and press the button **Add Task** to add it to your table.
+Simply type your task and press enter to add it to your table.
 
 ### Categories
 

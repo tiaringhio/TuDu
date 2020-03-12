@@ -1,6 +1,6 @@
-import React, { useState, useContext, useCallback } from "react";
+import React, { useContext, useCallback } from "react";
 import { AuthContext } from "./Auth.js";
-import * as firebase from "firebase";
+import firebase from "firebase/app";
 import { withRouter, Redirect } from "react-router-dom";
 import logo from "./components/todo.png";
 import "./login.css";

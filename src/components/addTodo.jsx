@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./addTodo.css";
 
 class AddToDo extends Component {
@@ -18,34 +19,40 @@ class AddToDo extends Component {
       }
     };
   }
+
+  keyPress(e) {
+    if (e.keyCode == 13) {
+      this.submitTodo(e);
+    }
+  }
   render() {
     return (
       <div className="row h-100 padding-for-input">
         <div className="col-sm-12 my-auto">
           <div className="w-25 mx-auto">
-            <div className="input-group mb-3">
-              <InputGroup className="mb-3">
+            <div className="input-group mb-3 ">
+              <InputGroup className="mb-3 shadow inputItem">
                 <FormControl
                   placeholder="New Task"
                   aria-label="New Task"
                   aria-describedby="basic-addon2"
                   value={this.props.currentItem}
                   id={"addTodoInput"}
+                  onKeyDown={e => {
+                    this.keyPress(e);
+                  }}
                   onChange={e => {
                     this.getElement(e);
                   }}
                 />
-                <InputGroup.Append>
-                  <Button
-                    variant="outline-secondary"
-                    id="Submit button"
-                    onClick={e => {
-                      this.submitTodo(e);
-                    }}
-                  >
-                    Add Task
-                  </Button>
-                </InputGroup.Append>
+                <FontAwesomeIcon
+                  className="add-icon"
+                  color="#000000"
+                  icon={faPlus}
+                  onClick={e => {
+                    this.submitTodo(e);
+                  }}
+                />
               </InputGroup>
             </div>
           </div>

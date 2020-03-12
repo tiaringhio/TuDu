@@ -10,10 +10,8 @@ const Home = () => {
     <AuthProvider>
       <Router>
         <Switch>
-          <div>
-            <PrivateRoute exact path="/" component={App} />
-            <Route exact path="/login" component={Login} />
-          </div>
+          <PrivateRoute exact path="/" component={App} />
+          <Route exact path="/login" component={Login} />
         </Switch>
       </Router>
     </AuthProvider>

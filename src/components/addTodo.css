@@ -1,3 +1,26 @@
 .padding-for-input {
   margin-top: 45px;
 }
+
+.inputItem:hover {
+  transition: all 0.2s ease-out;
+  box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+  top: -4px;
+}
+
+.inputItem:before {
+  position: absolute;
+  z-index: -1;
+  top: -16px;
+  right: -16px;
+  height: 32px;
+  width: 32px;
+  border-radius: 32px;
+  transform: scale(2);
+  transform-origin: 50% 50%;
+  transition: transform 0.5s ease-out;
+}
+
+.inputItem:hover:before {
+  transform: scale(2.15);
+}

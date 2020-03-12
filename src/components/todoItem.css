@@ -102,6 +102,17 @@
   margin-right: 70px;
 }
 
+.add-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 3px;
+  margin-right: 10px;
+}
+
 .todo-date {
   color: #eeeeee;
   font-weight: bold;

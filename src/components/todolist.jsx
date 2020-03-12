@@ -32,7 +32,6 @@ class ToDoList extends Component {
 
   render() {
     const { todos } = this.props;
-    console.log(todos);
     return (
       <div>
         <Container className="container-fluid">
