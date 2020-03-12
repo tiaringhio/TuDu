@@ -71,6 +71,7 @@ class AddToDo extends Component {
         newDecorator = dataAfter.join("");
       }
     }
+
     this.setState({
       currentItem: {
         text: newWord,

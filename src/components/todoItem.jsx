@@ -10,18 +10,25 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import Moment from "react-moment";
+import moment from "moment";
+
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from "@material-ui/pickers";
 
 class ToDoItem extends Component {
-  state = {
-    displayColorPicker: false,
-    background: "#FCB900",
-    date: new Date(),
-    isDatePickerOpen: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayColorPicker: false,
+      background: "#FCB900",
+      date: new Date(),
+      isDatePickerOpen: false,
+      displayRightDate: false,
+      displayWrongDate: true
+    };
+  }
 
   render() {
     const { todo } = this.props;
@@ -38,6 +45,11 @@ class ToDoItem extends Component {
       bottom: "10px",
       left: "10px"
     };
+
+    this.componentWillMount = () => {
+      this.setState({ displayRightDate: true });
+    };
+
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <div classes="card-container">
@@ -66,9 +78,27 @@ class ToDoItem extends Component {
               >
                 {todo.text}
               </Card.Title>
-              <Moment className="todo-date" format="DD/MM/YY">
-                {todo.date}
-              </Moment>
+              {todo.date !== "" && this.state.displayWrongDate ? (
+                /**
+                 * This is probably not the correct way to tackle this task, it's a workaround,
+                 * let me explain:
+                 * what happens is that Firebase uses Timestamps to keep track of date values,
+                 * the conversion is usually pretty simple (using moment even more so),
+                 * the problem is that i cannot figure out why it shows invalid element
+                 * when i change the value (doesn't do that anymore). So the workaround is
+                 * to render contionally two different elements with different settings.
+                 *
+                 * Overenigneered but it works ¯\_(ツ)_/¯
+                 */
+                <Moment className="todo-date" format="DD/MM/YY">
+                  {todo.date.seconds * 1000}
+                </Moment>
+              ) : null}
+              {this.state.displayRightDate ? (
+                <Moment className="todo-date" format="DD/MM/YY">
+                  {todo.date}
+                </Moment>
+              ) : null}
               <FontAwesomeIcon
                 className="delete-icon"
                 color="#eeeeee"
@@ -131,11 +161,30 @@ class ToDoItem extends Component {
       </MuiPickersUtilsProvider>
     );
   }
-  toDate = () => {
-    var timestamp = this.props.todo.date;
-    var date = timestamp.toDate();
-    return date;
+
+  displayDateClose = () => {
+    this.setState({ displayRightDate: false });
   };
+
+  displayDateOpen = () => {
+    this.setState({ displayRightDate: true });
+  };
+
+  showRightDate = () => {
+    this.setState({
+      displayRightDate: !this.state.displayRightDate,
+      displayWrongDate: !this.state.displayWrongDate
+    });
+  };
+
+  updateDate = () => {
+    this.props.changeDateFn(this.props.todo, this.state.date);
+    this.setState({
+      displayRightDate: true,
+      displayWrongDate: false
+    });
+  };
+
   /**
    * body color operations
    */
@@ -161,17 +210,6 @@ class ToDoItem extends Component {
    */
   displayDatePicker = () => {
     this.setState({ displayDatePicker: !this.state.displayDatePicker });
-  };
-
-  handleDateChange = date => {
-    this.setState({
-      date: date
-    });
-  };
-
-  updateDate = () => {
-    console.log("date to change: ", this.state.date);
-    this.props.changeDateFn(this.props.todo, this.state.date);
   };
 
   /**
