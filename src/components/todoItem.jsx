@@ -9,8 +9,8 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Moment from "react-moment";
-import moment from "moment";
 
 import {
   MuiPickersUtilsProvider,
@@ -90,14 +90,30 @@ class ToDoItem extends Component {
                  *
                  * Overenigneered but it works ¯\_(ツ)_/¯
                  */
-                <Moment className="todo-date" format="DD/MM/YY">
-                  {todo.date.seconds * 1000}
-                </Moment>
+                <div>
+                  <Moment className="todo-date" format="DD/MM/YY">
+                    {todo.date.seconds * 1000}
+                  </Moment>
+                  <FontAwesomeIcon
+                    className="delete-date-icon"
+                    color="#eeeeee"
+                    icon={faTimes}
+                    onClick={() => this.setState({ date: "" }, this.deleteDate)}
+                  />
+                </div>
               ) : null}
               {this.state.displayRightDate ? (
-                <Moment className="todo-date" format="DD/MM/YY">
-                  {todo.date}
-                </Moment>
+                <div>
+                  <Moment className="todo-date" format="DD/MM/YY">
+                    {todo.date}
+                  </Moment>
+                  <FontAwesomeIcon
+                    className="delete-date-icon"
+                    color="#eeeeee"
+                    icon={faTimes}
+                    onClick={() => this.setState({ date: "" }, this.deleteDate)}
+                  />
+                </div>
               ) : null}
               <FontAwesomeIcon
                 className="delete-icon"
@@ -185,6 +201,13 @@ class ToDoItem extends Component {
     });
   };
 
+  deleteDate = () => {
+    this.props.changeDateFn(this.props.todo, this.state.date);
+    this.setState({
+      displayRightDate: false,
+      displayWrongDate: false
+    });
+  };
   /**
    * body color operations
    */
