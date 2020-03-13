@@ -47,6 +47,7 @@ class ToDoList extends Component {
                   }}
                   changeCardColorFn={this.changeCardColor}
                   changeDateFn={this.addDate}
+                  changeExpirationFn={this.updateTodoExpiration}
                 ></ToDoItem>
               );
             })}
@@ -61,6 +62,10 @@ class ToDoList extends Component {
 
   updateTodo = todo => {
     this.props.updateTodoFn(todo);
+  };
+
+  updateTodoExpiration = todo => {
+    this.props.changeExpirationFn(todo);
   };
 
   deleteTodoList = key => {

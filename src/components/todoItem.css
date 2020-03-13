@@ -81,7 +81,7 @@
   bottom: 0;
   left: 0;
   margin-bottom: 4px;
-  margin-left: 60px;
+  margin-left: 100px;
 }
 
 .complete-icon {
@@ -122,4 +122,8 @@
   left: 0;
   margin-bottom: 3px;
   margin-left: 5px;
+}
+
+.expired {
+  opacity: 50%;
 }

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import "./todoItem.css";
 import { TwitterPicker } from "react-color";
-import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,10 +12,7 @@ import {
   faTimes
 } from "@fortawesome/free-solid-svg-icons";
 import Moment from "react-moment";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker
-} from "@material-ui/pickers";
+import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
 
 class ToDoItem extends Component {
   constructor(props) {
@@ -49,6 +45,10 @@ class ToDoItem extends Component {
 
     this.componentWillMount = () => {
       this.setState({ displayRightDate: true });
+    };
+
+    this.componentDidMount = () => {
+      this.changeDateTitle();
     };
 
     return (
@@ -91,8 +91,8 @@ class ToDoItem extends Component {
                  *
                  * Overenigneered but it works ¯\_(ツ)_/¯
                  */
-                <div>
-                  <Moment className="todo-date" format="DD/MM/YY">
+                <div className={this.changeDateTitle()}>
+                  <Moment className="todo-date" format="DD/MM/YY, HH:mm">
                     {todo.date.seconds * 1000}
                   </Moment>
                   <FontAwesomeIcon
@@ -104,8 +104,8 @@ class ToDoItem extends Component {
                 </div>
               ) : null}
               {this.state.displayRightDate ? (
-                <div>
-                  <Moment className="todo-date" format="DD/MM/YY">
+                <div className={this.changeDateTitle()}>
+                  <Moment className="todo-date" format="DD/MM/YY, HH:mm">
                     {todo.date}
                   </Moment>
                   <FontAwesomeIcon
@@ -152,24 +152,18 @@ class ToDoItem extends Component {
                   />
                 </div>
               ) : null}
-              <Grid container justify="space-around"></Grid>
               {this.state.isDatePickerOpen === true ? (
-                <KeyboardDatePicker
+                <DateTimePicker
                   open={this.state.isDatePickerOpen}
                   onOpen={() => this.setState({ isDatePickerOpen: true })}
                   onClose={() => this.setState({ isDatePickerOpen: false })}
-                  className="date-picker"
-                  autoOk={true}
+                  className="date-time-picker"
                   disablePast={true}
-                  margin="normal"
                   id="date-picker-dialog"
                   label="Date picker dialog"
-                  format="dd/MM/yy"
+                  format="dd/MM/yy, HH:mm"
                   value={this.state.date}
                   onChange={date => this.setState({ date }, this.updateDate)}
-                  KeyboardButtonProps={{
-                    "aria-label": "change date"
-                  }}
                 />
               ) : null}
             </Card.Body>
@@ -208,6 +202,16 @@ class ToDoItem extends Component {
       displayRightDate: false,
       displayWrongDate: false
     });
+  };
+
+  changeDateTitle = () => {
+    const date = new Date().getTime() / 1000;
+    const firestoreDate = this.props.todo.date.seconds;
+    if (firestoreDate <= date) {
+      let classes = "dateContainer";
+      classes += " expired";
+      return classes;
+    }
   };
   /**
    * body color operations
