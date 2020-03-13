@@ -127,7 +127,7 @@ You can choose the card color of your liking by pressing the 🎨 button on the 
 
 ### DateTime
 
-You can set a time for the task by clicking on the ⏰ icon and choosing date and time, you can delete seaid time by click on the ✖ bseides the date.
+You can set a time for the task by clicking on the ⏰ icon and choosing date and time, you can delete said time by click on the ✖ besides the date.
 
 ## Authentication
 
