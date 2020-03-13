@@ -78,17 +78,20 @@ class AddToDo extends Component {
         newDecorator = dataAfter.join("");
       }
     }
-
-    this.setState({
-      currentItem: {
-        text: newWord,
-        completed: false,
-        key: Date.now(),
-        category: newDecorator,
-        bodyColor: "#2962ff",
-        date: ""
-      }
-    });
+    if (newWord !== "" && newWord !== " ") {
+      this.setState({
+        currentItem: {
+          text: newWord,
+          completed: false,
+          key: Date.now(),
+          category: newDecorator,
+          bodyColor: "#2962ff",
+          date: ""
+        }
+      });
+    } else {
+      this.setState({ text: "" });
+    }
   };
 
   submitTodo = e => {

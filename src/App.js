@@ -42,30 +42,32 @@ class App extends Component {
   };
 
   addTodo = async todo => {
-    app
-      .firestore()
-      .collection("users")
-      .doc(this.state.uid)
-      .collection("user_todos")
-      .doc(todo.key.toString())
-      .set(todo)
-      .then(function() {
-        console.log("element added");
-      })
-      .catch(function(error) {
-        console.error("error adding document", error);
+    if (todo.text !== "" && todo.text !== " ") {
+      app
+        .firestore()
+        .collection("users")
+        .doc(this.state.uid)
+        .collection("user_todos")
+        .doc(todo.key.toString())
+        .set(todo)
+        .then(function() {
+          console.log("element added");
+        })
+        .catch(function(error) {
+          console.error("error adding document", error);
+        });
+      await this.setState({
+        todos: [...this.state.todos, todo],
+        currentItem: {
+          text: "",
+          completed: false,
+          key: "",
+          category: "",
+          bodyColor: "#2962ff",
+          date: ""
+        }
       });
-    await this.setState({
-      todos: [...this.state.todos, todo],
-      currentItem: {
-        text: "",
-        completed: false,
-        key: "",
-        category: "",
-        bodyColor: "#2962ff",
-        date: ""
-      }
-    });
+    }
   };
 
   changeColor = async (todo, color) => {
