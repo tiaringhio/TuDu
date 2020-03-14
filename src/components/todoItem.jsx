@@ -161,7 +161,6 @@ class ToDoItem extends Component {
                   disablePast={true}
                   id="date-picker-dialog"
                   label="Date picker dialog"
-                  format="dd/MM/yy, HH:mm"
                   value={this.state.date}
                   onChange={date => this.setState({ date }, this.updateDate)}
                 />
