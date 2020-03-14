@@ -13,6 +13,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Moment from "react-moment";
 import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
+import DatePicker from "react-datepicker";
+import Modal from "react-bootstrap/Modal";
+import "react-datepicker/dist/react-datepicker.css";
 
 class ToDoItem extends Component {
   constructor(props) {
@@ -152,19 +155,25 @@ class ToDoItem extends Component {
                   />
                 </div>
               ) : null}
-              {this.state.isDatePickerOpen === true ? (
-                <DateTimePicker
-                  open={this.state.isDatePickerOpen}
-                  onOpen={() => this.setState({ isDatePickerOpen: true })}
-                  onClose={() => this.setState({ isDatePickerOpen: false })}
-                  className="date-time-picker"
-                  disablePast={true}
-                  id="date-picker-dialog"
-                  label="Date picker dialog"
-                  value={this.state.date}
+              <Modal
+                centered
+                show={this.state.isDatePickerOpen}
+                // onHide={() => this.setState({ isDatePickerOpen: false })}
+              >
+                <DatePicker
+                  className="date-style"
+                  inline
+                  showTimeSelect
+                  minDate={new Date()}
                   onChange={date => this.setState({ date }, this.updateDate)}
-                />
-              ) : null}
+                />{" "}
+                <button
+                  onClick={() => this.setState({ isDatePickerOpen: false })}
+                  className="submit-date"
+                >
+                  Confirm
+                </button>
+              </Modal>
             </Card.Body>
           </Card>
         </div>

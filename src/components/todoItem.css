@@ -127,3 +127,11 @@
 .expired {
   opacity: 0.5;
 }
+.date-style {
+  height: 400px;
+}
+.submit-date {
+  position: absolute;
+  bottom: 100px;
+  right: 25px;
+}
