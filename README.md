@@ -9,7 +9,7 @@
     A simple To-Do Web App written in React powered by Firebase and Cloud Firestore.
   </p>
   <p align="center">
-    <a href="https://tiaringhiotudu.netlify.com/" target="_blank" align="center">Live Demo</a>
+    Demo non più attiva.
   </p>
   
   <!-- TABLE OF CONTENTS -->
